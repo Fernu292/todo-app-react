@@ -1,0 +1,59 @@
+html{
+    background-color: #140021;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    color: white;
+    max-height: 100vh;
+
+}
+
+.Todo-app{
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    margin: 5rem auto;
+}
+
+button{
+    background-color: #752A7B;
+    border: none;
+    padding: 0.6rem 0.5rem;
+    font-weight: bold;
+    color: white;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 1.5rem;
+    font-size: 12px;
+    margin-top: 3rem;
+}
+
+input{
+    border: none;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border-bottom: solid white 2px;
+}
+
+input:focus-visible{
+    outline: none;
+}
+
+
+img{
+    max-width: 100%;
+    margin: 0;
+}
+
+
+.image-bg{
+    position: absolute;
+    bottom: 0;
+    height: 15rem;
+    width: 100%;
+    object-fit: cover;
+}
