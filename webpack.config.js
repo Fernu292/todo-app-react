@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path');
 
 module.exports = {
@@ -24,6 +26,20 @@ module.exports = {
                 use: { 
                     loader : 'html-loader'
                 }
+            },
+            {
+                test: /\.(css|scss)$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "scss-loadernpm"
+                ]
+            },
+            {
+                test: /\.svg$/,
+                use : {
+                    loader: "svg-url-loader"
+                }
             }
         ]
     },
@@ -31,7 +47,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: './index.html'
-        })
+        }),
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin()
+
     ],
     devServer : {
         static: {
