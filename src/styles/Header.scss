@@ -6,13 +6,28 @@ header{
     align-items: center;
     justify-content: space-between;
 }
-
+@keyframes aparecer {
+    from{
+        right: -15rem;
+    }
+    to{
+        right: 0;
+    }
+}
+@keyframes desaparecer {
+    from{
+        right: 0;
+    }
+    to{
+        right: -15rem;
+    }
+}
 .navigation{
     display: flex;
     flex-direction: column;
     background-color: #5f5f5f35;  
     backdrop-filter: blur(5px);
-    height: 95%;
+    height: 93%;
     position: absolute;
     padding: 2rem  3rem 0 1rem;
     top: 0;
@@ -20,8 +35,12 @@ header{
     z-index: 4;
     align-items: flex-start;
     gap: 1rem;
-    transition: 2s;
+    animation-duration: 0.8s;
+    animation-name: aparecer;
+    
 }
+
+
 
 .Menu{
     font-size: 1.5rem;
@@ -33,4 +52,5 @@ header{
 
 .hidden{
     display: none;
+    animation: 0.8s desaparecer;
 }

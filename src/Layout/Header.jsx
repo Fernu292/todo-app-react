@@ -32,6 +32,8 @@ const Header = () => {
             <nav className='navigation hidden' id='navbar'>
                 <AiOutlineClose className='Menu' onClick={handleClickMenu}/>
                 <a>Code</a>
+                <a>My portafolio</a>
+                <a>My LinkedIn</a>
             </nav>
         </header>
     );

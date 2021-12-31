@@ -29,6 +29,7 @@ button{
     border-radius: 1.5rem;
     font-size: 12px;
     margin-top: 3rem;
+    cursor: pointer;
 }
 
 input{
@@ -56,4 +57,12 @@ img{
     height: 15rem;
     width: 100%;
     object-fit: cover;
+}
+
+ul{
+    padding: 0;
+}
+
+li{
+    list-style: none;
 }

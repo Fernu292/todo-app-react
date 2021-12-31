@@ -1,8 +1,15 @@
 import React from 'react';
+import {ImCheckmark, ImCross} from 'react-icons/im';
 
-const TodoItem = ({text}) => {
+import '../styles/TodoItem.scss';
+
+const TodoItem = ({text, completed}) => {
     return ( 
-        <li>{text}</li>
+        <div className='item'>
+            <ImCheckmark />
+            <li>{text}</li>
+            <ImCross />
+        </div>
     );
 }
  
