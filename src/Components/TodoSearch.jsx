@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const TodoSearch = () => {
-    return ( 
-        <input placeholder='Cebolla' type='text' />
+const TodoSearch = ({search, setSearchValue}) => {
+
+
+    const handleChange = (e)=>{
+        setSearchValue(e.target.value);
+    }
+    return (
+        <>
+            <input 
+                placeholder='Cebolla' 
+                type='text'
+                value={search}
+                onChange={handleChange}
+            />
+
+            <p>{search}</p>
+        </> 
+       
     );
 }
  

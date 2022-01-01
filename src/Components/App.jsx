@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 //Styles
 import '../styles/App.css';
@@ -18,13 +18,17 @@ import Layer from '../img/layer.svg';
 
 
 const App = () => {
+    const [search, setSearchValue] = useState('');
 
     return ( 
         <>
             <Header />
             <div className='Todo-app'>
                 <TodoCounter />
-                <TodoSearch />
+                <TodoSearch 
+                    search={search} 
+                    setSearchValue={setSearchValue}
+                />
                 <TodoList />
                 <CreateTodoButton />
             </div>

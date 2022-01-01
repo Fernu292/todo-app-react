@@ -30,6 +30,7 @@ button{
     font-size: 12px;
     margin-top: 3rem;
     cursor: pointer;
+    z-index: 3;
 }
 
 input{
@@ -38,6 +39,7 @@ input{
     background-color: transparent;
     color: white;
     border-bottom: solid white 2px;
+    text-align: center;
 }
 
 input:focus-visible{

@@ -1,9 +1,14 @@
 import React from 'react';
 
 const CreateTodoButton = () => {
+
+    const handleClick = (msg)=>{
+        alert(msg)
+    }
+
     return ( 
         <button
-            onClick={() => console.log("Diste click")}
+            onClick={() => handleClick("un mensaje")}
         >Create ToDo</button>
      );
 }

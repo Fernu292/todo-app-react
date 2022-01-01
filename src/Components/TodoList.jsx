@@ -13,7 +13,7 @@ const TodoList = () => {
     return ( 
         <ul>
             {Todos.map( todo => (
-                <TodoItem key={todo.titulo} text={todo.titulo} state = {todo.complet} />
+                <TodoItem key={todo.titulo} text={todo.titulo} completed = {todo.complet} />
             ))}
         </ul>
     );

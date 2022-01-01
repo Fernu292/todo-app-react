@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles/Header.scss';
 
 import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai';
@@ -8,10 +8,10 @@ const Header = () => {
     const [menu, setMenu] = useState(false);
 
     const handleClickMenu = ()=>{
-        console.log('Menu click');
-
         setMenu(!menu);
+    }
 
+    useEffect(()=>{
         const NavBar = document.getElementById('navbar');
         const Menubtn = document.getElementById('Menu');
 
@@ -22,7 +22,7 @@ const Header = () => {
             NavBar.classList.add('hidden');
             Menubtn.classList.remove('hidden');
         }
-    }
+    },[menu]);
 
     return ( 
         <header>
