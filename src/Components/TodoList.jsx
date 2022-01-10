@@ -2,14 +2,9 @@ import React from 'react';
 
 import TodoItem from './TodoItem';
 
-const Todos = [
-    {titulo: "Comprar papas", complet: false},
-    {titulo: "Hacer mi pagina web", complet: false},
-    {titulo: "Pagar Tarjetas", complet: false},
-    {titulo: "Estudiar en platzi", complet: false},
-]
 
-const TodoList = () => {
+
+const TodoList = ({Todos}) => {
     return ( 
         <ul>
             {Todos.map( todo => (
