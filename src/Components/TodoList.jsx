@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TodoContext } from '../context/TodoContext';
 
 import TodoItem from './TodoItem';
 
 
 
-const TodoList = ({Todos, onComplete, onDelete}) => {
+const TodoList = ({Todos}) => {
+
+    const { completeTodos: onComplete, deleteTodos: onDelete} = useContext(TodoContext);
+
     return ( 
         <ul>
             {Todos.map( todo => (

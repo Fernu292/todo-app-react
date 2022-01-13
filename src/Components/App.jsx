@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
+import React, {useContext} from 'react';
 
 //Styles
 import '../styles/App.css';
+
+//Context 
+import { TodoContext } from '../context/TodoContext';
+import TodoContextProvider from '../context/TodoContext';
 
 //Components
 import TodoCounter from './TodoCounter';
@@ -24,61 +27,32 @@ import Layer from '../img/layer.svg';
 
 const App = () => {
     
-    const [search, setSearchValue] = useState('');
-    const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
-
-
-    //El doble !! analiza la propiedad completed como true
-    const completedTodos = todos.filter(todos => !!todos.complet).length;
-    const totalTodos = todos.length;
+    const {search, loading, error, todos} = useContext(TodoContext);
     
     let searchedTodos = [];
 
-    if(!search.length >= 1){
-        searchedTodos = todos;
+     if(!search.length >= 1){
+         searchedTodos = todos;
     }else{
-        searchedTodos = todos.filter(todo => {
-            const todoText = todo.titulo.toLowerCase();
-            const searchText = search.toLowerCase();
+         searchedTodos = todos.filter(todo => {
+             const todoText = todo.titulo.toLowerCase();
+             const searchText = search.toLowerCase();
 
-            return todoText.includes(searchText);
-        })
-    }
-
-    
-    const completeTodos = (titulo)=>{
-        const todoIndex = todos.findIndex(todo => todo.titulo===titulo);
-        const newTodos = [...todos];
-        newTodos[todoIndex].complet = true;
-
-        saveTodos(newTodos);
-    }
-
-    const deleteTodos = (titulo)=>{
-        const newTodos = todos.filter(todo => todo.titulo != titulo);
-        saveTodos(newTodos);
-    }
-
+             return todoText.includes(searchText);
+         })
+     }
     return ( 
         <>
             <Header />
             <div className='Todo-app'>
-                <TodoCounter 
-                    total={totalTodos}
-                    complet={completedTodos}
-                />
-                <TodoSearch 
-                    search={search} 
-                    setSearchValue={setSearchValue}
-                />
+                <TodoCounter />
+                <TodoSearch />
                 {error && <p>Hubo un error</p>}
                 {loading && <p>Estamos cargando...</p>}
                 {(!loading && !searchedTodos.length) && <p>Crea tu primer ToDo</p>}
 
                 <TodoList 
-                    Todos={searchedTodos} 
-                    onComplete={completeTodos}
-                    onDelete={deleteTodos}
+                    Todos={searchedTodos}
                 />
                 <CreateTodoButton />
             </div>
