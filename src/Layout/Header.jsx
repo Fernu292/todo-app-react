@@ -31,9 +31,9 @@ const Header = () => {
             <AiOutlineMenu className='Menu' onClick={handleClickMenu} id='Menu'/>
             <nav className='navigation hidden' id='navbar'>
                 <AiOutlineClose className='Menu' onClick={handleClickMenu}/>
-                <a>Code</a>
-                <a>My portafolio</a>
-                <a>My LinkedIn</a>
+                <a href='https://github.com/Fernu292/todo-app-react'>Code</a>
+                <a href='https://fernu.netlify.app/'>My portafolio</a>
+                <a href='https://www.linkedin.com/in/luis-fernando-n%C3%BA%C3%B1ez-rangel-885431213/'>My LinkedIn</a>
             </nav>
         </header>
     );

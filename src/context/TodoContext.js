@@ -8,6 +8,18 @@ const TodoContextProvider = ({children})=>{
     const [search, setSearchValue] = useState('');
     const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
 
+    let searchedTodos = [];
+
+     if(!search.length >= 1){
+         searchedTodos = todos;
+    }else{
+         searchedTodos = todos.filter(todo => {
+             const todoText = todo.titulo.toLowerCase();
+             const searchText = search.toLowerCase();
+
+             return todoText.includes(searchText);
+         })
+     }
 
     //El doble !! analiza la propiedad completed como true
     const completedTodos = todos.filter(todos => !!todos.complet).length;
@@ -35,6 +47,7 @@ const TodoContextProvider = ({children})=>{
                 loading, 
                 error, 
                 completedTodos,
+                searchedTodos,
                 setSearchValue,
                 saveTodos,
                 completeTodos,
