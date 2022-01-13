@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 //Styles
 import '../styles/App.css';
@@ -13,19 +14,19 @@ import CreateTodoButton from './CreateTodoButton';
 import Header from '../Layout/Header';
 
 //Images
-
 import Layer from '../img/layer.svg';
 
-const defaultTodos = [
-    {titulo: "Comprar papas", complet: true},
-    {titulo: "Hacer mi pagina web", complet: false},
-    {titulo: "Pagar Tarjetas", complet: false},
-    {titulo: "Estudiar en platzi", complet: false},
-]
+// const defaultTodos = [    {titulo: "Comprar papas", complet: true},
+//    {titulo: "Hacer mi pagina web", complet: false},
+//    {titulo: "Pagar Tarjetas", complet: false},
+//   {titulo: "Estudiar en platzi", complet: false},
+// ]
 
 const App = () => {
+    
     const [search, setSearchValue] = useState('');
-    const [todos, setTodos] = useState(defaultTodos);
+    const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
+
 
     //El doble !! analiza la propiedad completed como true
     const completedTodos = todos.filter(todos => !!todos.complet).length;
@@ -44,6 +45,20 @@ const App = () => {
         })
     }
 
+    
+    const completeTodos = (titulo)=>{
+        const todoIndex = todos.findIndex(todo => todo.titulo===titulo);
+        const newTodos = [...todos];
+        newTodos[todoIndex].complet = true;
+
+        saveTodos(newTodos);
+    }
+
+    const deleteTodos = (titulo)=>{
+        const newTodos = todos.filter(todo => todo.titulo != titulo);
+        saveTodos(newTodos);
+    }
+
     return ( 
         <>
             <Header />
@@ -56,7 +71,15 @@ const App = () => {
                     search={search} 
                     setSearchValue={setSearchValue}
                 />
-                <TodoList Todos={searchedTodos}/>
+                {error && <p>Hubo un error</p>}
+                {loading && <p>Estamos cargando...</p>}
+                {(!loading && !searchedTodos.length) && <p>Crea tu primer ToDo</p>}
+
+                <TodoList 
+                    Todos={searchedTodos} 
+                    onComplete={completeTodos}
+                    onDelete={deleteTodos}
+                />
                 <CreateTodoButton />
             </div>
 
