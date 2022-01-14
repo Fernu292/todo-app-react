@@ -11,13 +11,12 @@ const TodoSearch = () => {
     return (
         <>
             <input 
-                placeholder='Cebolla' 
+                placeholder='Busca tus todos' 
                 type='text'
                 value={search}
                 onChange={handleChange}
             />
 
-            <p>{search}</p>
         </> 
        
     );

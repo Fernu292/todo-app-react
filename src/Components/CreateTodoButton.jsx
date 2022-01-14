@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { TodoContext } from '../context/TodoContext';
 
 const CreateTodoButton = () => {
 
-    const handleClick = (msg)=>{
-        alert(msg)
+    const {setOpenModal} = useContext(TodoContext);
+
+    const handleClick = ()=>{
+        setOpenModal(true);
     }
 
     return ( 
         <button
-            onClick={() => handleClick("un mensaje")}
+            onClick={handleClick}
         >Create ToDo</button>
      );
 }

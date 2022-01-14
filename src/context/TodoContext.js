@@ -5,6 +5,7 @@ export const TodoContext = createContext();
 
 const TodoContextProvider = ({children})=>{
     
+    const [openModal, setOpenModal] = useState(false);
     const [search, setSearchValue] = useState('');
     const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
 
@@ -38,6 +39,16 @@ const TodoContextProvider = ({children})=>{
         saveTodos(newTodos);
     }
 
+    const addTodo = (text)=>{
+        const newTodos = [...todos];
+        newTodos.push({
+           titulo: text,
+           complet: false
+        });
+        saveTodos(newTodos);
+
+    }
+
     return (
         <TodoContext.Provider
             value={{
@@ -45,13 +56,15 @@ const TodoContextProvider = ({children})=>{
                 totalTodos,
                 todos, 
                 loading, 
-                error, 
+                error,
+                openModal,
                 completedTodos,
                 searchedTodos,
                 setSearchValue,
-                saveTodos,
                 completeTodos,
-                deleteTodos
+                deleteTodos,
+                setOpenModal,
+                addTodo
                
             }}
         >
